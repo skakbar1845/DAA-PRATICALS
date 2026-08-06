@@ -1,0 +1,23 @@
+# Simple Binary Search
+
+arr = [10, 20, 30, 40, 50, 60, 70]
+
+num = int(input("Enter number to search: "))
+
+first = 0
+last = len(arr) - 1
+
+while first <= last:
+    mid = (first + last) // 2
+
+    if num == arr[mid]:
+        print("Element Found")
+        break
+
+    if num < arr[mid]:
+        last = mid - 1
+    else:
+        first = mid + 1
+
+if first > last:
+    print("Element Not Found")
