@@ -1,0 +1,44 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int N, m;
+
+    cout << "Enter amount: ";
+    cin >> N;
+
+    cout << "Enter number of coins: ";
+    cin >> m;
+
+    int coins[m];
+
+    cout << "Enter coins: ";
+    for (int i = 0; i < m; i++)
+        cin >> coins[i];
+
+    int dp[m + 1][N + 1];
+
+    for (int i = 0; i <= m; i++)
+        dp[i][0] = 1;
+
+    
+    for (int j = 1; j <= N; j++)
+        dp[0][j] = 0;
+
+    
+    for (int i = 1; i <= m; i++)
+    {
+        for (int j = 1; j <= N; j++)
+        {
+            if (j < coins[i - 1])
+                dp[i][j] = dp[i - 1][j];
+            else
+                dp[i][j] = dp[i - 1][j] + dp[i][j - coins[i - 1]];
+        }
+    }
+
+    cout << "Number of ways = " << dp[m][N];
+
+    return 0;
+}
